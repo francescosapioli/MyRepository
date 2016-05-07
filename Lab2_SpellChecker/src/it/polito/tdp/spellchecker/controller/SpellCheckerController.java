@@ -1,7 +1,15 @@
 package it.polito.tdp.spellchecker.controller;
 
+import java.awt.Color;
 import java.net.URL;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
+
+import it.polito.tdp.spellchecker.model.Dictionary;
+import it.polito.tdp.spellchecker.model.EnglishDictionary;
+import it.polito.tdp.spellchecker.model.ItalianDictionary;
+import it.polito.tdp.spellchecker.model.RichWord;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,6 +18,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
 public class SpellCheckerController {
+	
+	
+	private Dictionary dictionary;
 
     @FXML
     private ResourceBundle resources;
@@ -18,8 +29,11 @@ public class SpellCheckerController {
     private URL location;
 
     @FXML
-    private ComboBox<String> cmbLanguage; //da modificare con gli opportuini oggetti (dizionari)
+    private ComboBox<Dictionary> cmbLanguage;
 
+    
+    
+    
     @FXML
     private TextArea txtTextUnchecked;
 
@@ -37,8 +51,15 @@ public class SpellCheckerController {
 
     @FXML
     private Label lblTime;
+    
+    
+    
 
-    @FXML
+    public void setDictionary(Dictionary dictionary) {
+		this.dictionary = dictionary;
+	}
+
+	@FXML
     void doClearText(ActionEvent event) {
     	
     	this.txtTextUnchecked.clear();
@@ -50,6 +71,65 @@ public class SpellCheckerController {
 
     @FXML
     void doSpellCheck(ActionEvent event) {
+    	
+    	this.dictionary=this.cmbLanguage.getValue();
+    	
+    	
+    	if(this.txtTextUnchecked.getText().compareTo("")==0)
+    		this.lblStatus.setText("You did not insert the text.");
+    	else{
+    		this.dictionary.loadDictionary();
+    		
+    		LinkedList<String> txtUncheckedList = new LinkedList<String>();
+    		String txtUncheckedArray[] = this.txtTextUnchecked.getText().toLowerCase().split(" ");
+    		for(int i=0; i<txtUncheckedArray.length;i++){
+    			
+    			
+    			
+    			
+    			
+    			txtUncheckedList.add(txtUncheckedArray[i]);
+    			
+    			
+    		}
+    		for(String s : txtUncheckedList ){
+    			
+    			
+    			s.replace(".", " ");
+    			s.replace(":", "");
+    			s.replace(",", "");
+    			s.replace(";", "");
+    			s.replace("-", "");
+    			s.replace("_", "");
+    			s.replace("?", "");
+    			s.replace("!", "");
+    			s.replace("<", "");
+    			s.replace(">", "");
+    			
+    			
+    		}
+    		
+    		List<RichWord> result = this.dictionary.spellCheckText(txtUncheckedList);
+    		
+    		String txtChecked= "";
+    		
+    		for(RichWord s : result){
+    			if(s.isCorrect()==false)
+    				txtChecked =txtChecked+" "+s.getWord();
+    			
+    		}
+    		
+    		
+    		this.txtTextChecked.setText(txtChecked);
+    		//il testo dovrebbe essere rosso ma  non ho idea di coma si faccia 
+    		
+    		if(txtChecked.compareTo("")==0)
+    			this.lblStatus.setText("Your text does not contain errors.");
+    		else
+    			this.lblStatus.setText("Your text contains errors");
+    		
+    	}
+    	
 
     }
 
@@ -64,8 +144,10 @@ public class SpellCheckerController {
         assert lblTime != null : "fx:id=\"lblTime\" was not injected: check your FXML file 'SpellChecker.fxml'.";
         
         //setto la comboBox
-        this.cmbLanguage.getItems().addAll("English", "Italian");//da modificare con gli opportuini oggetti (dizionari)
-        this.cmbLanguage.setValue("English");//da modificare con gli opportuini oggetti (dizionari)
+        EnglishDictionary ed = new EnglishDictionary();
+        ItalianDictionary id = new ItalianDictionary();
+        this.cmbLanguage.getItems().addAll(ed, id);
+        this.cmbLanguage.setValue(ed);
         
         //blocco la seconda textArea altrimenti ci si puo' scrivere sopra
         this.txtTextChecked.setEditable(false);
