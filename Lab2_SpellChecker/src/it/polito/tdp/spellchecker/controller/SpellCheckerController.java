@@ -18,7 +18,7 @@ public class SpellCheckerController {
     private URL location;
 
     @FXML
-    private ComboBox<?> cmbLanguage;
+    private ComboBox<String> cmbLanguage; //da modificare con gli opportuini oggetti (dizionari)
 
     @FXML
     private TextArea txtTextUnchecked;
@@ -40,6 +40,11 @@ public class SpellCheckerController {
 
     @FXML
     void doClearText(ActionEvent event) {
+    	
+    	this.txtTextUnchecked.clear();
+    	this.txtTextChecked.clear();
+    	
+    	
 
     }
 
@@ -57,6 +62,14 @@ public class SpellCheckerController {
         assert lblStatus != null : "fx:id=\"lblStatus\" was not injected: check your FXML file 'SpellChecker.fxml'.";
         assert btnClearText != null : "fx:id=\"btnClearText\" was not injected: check your FXML file 'SpellChecker.fxml'.";
         assert lblTime != null : "fx:id=\"lblTime\" was not injected: check your FXML file 'SpellChecker.fxml'.";
+        
+        //setto la comboBox
+        this.cmbLanguage.getItems().addAll("English", "Italian");//da modificare con gli opportuini oggetti (dizionari)
+        this.cmbLanguage.setValue("English");//da modificare con gli opportuini oggetti (dizionari)
+        
+        //blocco la seconda textArea altrimenti ci si puo' scrivere sopra
+        this.txtTextChecked.setEditable(false);
+        
 
     }
 }
