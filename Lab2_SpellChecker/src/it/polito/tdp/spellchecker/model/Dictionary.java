@@ -37,19 +37,16 @@ public class Dictionary {
 			int inizio;
 			int centro;
 			int fine;
-			int indice;
 			
-			indice = -1;
 			inizio = 0;
 			fine = this.words.size()-1;
 			
-			while(indice==-1 && inizio<=fine){
+			while(w.isCorrect()==false && inizio<=fine){
 				
 				centro = (inizio+fine)/2;
 				
 				if(this.words.get(centro).compareTo(s)==0) //trovata corrispondenza
 				{
-					indice = centro;
 					
 					w.setCorrectWrong(true);
 					
