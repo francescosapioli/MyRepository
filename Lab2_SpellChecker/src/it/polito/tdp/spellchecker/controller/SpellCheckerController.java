@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.StringTokenizer;
 
 import it.polito.tdp.spellchecker.model.Dictionary;
 import it.polito.tdp.spellchecker.model.EnglishDictionary;
@@ -16,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.text.Font;
 
 public class SpellCheckerController {
 	
@@ -84,8 +86,16 @@ public class SpellCheckerController {
     		this.dictionary.loadDictionary();
     		
     		LinkedList<String> txtUncheckedList = new LinkedList<String>();
-    		String txtUncheckedArray[] = this.txtTextUnchecked.getText().toLowerCase().split(" ");
-    		for(int i=0; i<txtUncheckedArray.length;i++){
+    		//String txtUncheckedArray[] = this.txtTextUnchecked.getText().toLowerCase().split(" ");
+    		
+    		StringTokenizer st = new StringTokenizer(this.txtTextUnchecked.getText(), " ");
+    		
+    		while(st.hasMoreTokens()){
+    			txtUncheckedList.add(st.nextToken().toLowerCase());
+    		}
+    		
+    		
+    		/*for(int i=0; i<txtUncheckedArray.length;i++){
     			
     			
     			
@@ -94,8 +104,8 @@ public class SpellCheckerController {
     			txtUncheckedList.add(txtUncheckedArray[i]);
     			
     			
-    		}
-    		for(String s : txtUncheckedList ){
+    		}*/
+    		/*for(String s : txtUncheckedList ){
     			
     			
     			s.replace(".", " ");
@@ -110,7 +120,7 @@ public class SpellCheckerController {
     			s.replace(">", "");
     			
     			
-    		}
+    		}*/
     		
     		List<RichWord> result = this.dictionary.spellCheckText(txtUncheckedList);
     		
@@ -118,9 +128,14 @@ public class SpellCheckerController {
     		
     		for(RichWord s : result){
     			if(s.isCorrect()==false)
-    				txtChecked =txtChecked+" "+s.getWord();
+    				txtChecked = txtChecked+" "+s.getWord().toUpperCase();//per ora che non so come impostare il testo
+    			                                                        //rosso, lo metto MAIUSCOLO
+    			else
+    				txtChecked = txtChecked+" "+s.getWord().toLowerCase();
     			
     		}
+    		
+    		
     		
     		
     		this.txtTextChecked.setText(txtChecked);

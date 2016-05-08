@@ -31,7 +31,7 @@
             </HBox>
             <TextArea fx:id="txtTextUnchecked" promptText="Insert the text, that you would to check." />
             <Button fx:id="btnSpellCheck" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#doSpellCheck" text="Spell Check" />
-            <TextArea fx:id="txtTextChecked" promptText="Here will be the text within the wrong words will be red." />
+            <TextArea fx:id="txtTextChecked"  promptText="Here will be the text within the wrong words will be red." />
             <HBox alignment="CENTER_RIGHT" spacing="20.0">
                <children>
                   <Label fx:id="lblStatus" alignment="TOP_RIGHT" text="No text inserted." />

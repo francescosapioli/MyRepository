@@ -11,27 +11,32 @@ public class Dictionary {
 	
 	public void loadDictionary(){
 		
-		words = new LinkedList();
+		words = new LinkedList<String>();
 		
 	}
 	
 	
 	public List<RichWord> spellCheckText(List<String> inputTextList){
 		
-		List<RichWord> result = new LinkedList();
+		
+		List<RichWord> result = new LinkedList<RichWord>();
 		
 		for(String s : inputTextList){
 			RichWord w= new RichWord(s);
 			
-			/* ricerca effettuata scorrendo gli elemtenti del dizionario dal primo in avanti:
-			if(words.contains(s))
+			//ricerca effettuata scorrendo gli elemtenti del dizionario dal primo in avanti:
+			
+			if(words.contains(s)){
 				w.setCorrectWrong(true);
-			else
+				System.out.println(this.words.indexOf(s));
+			}
+			else{
 				w.setCorrectWrong(false);
-			*/
+			}
 			
-			//ricerca dicotomica
 			
+			//ricerca dicotomica     21427
+			/*
 			w.setCorrectWrong(false);
 			
 			int inizio;
@@ -43,31 +48,40 @@ public class Dictionary {
 			
 			while(w.isCorrect()==false && inizio<=fine){
 				
+				
 				centro = (inizio+fine)/2;
+				
+				
+				System.out.println("inizio:"+inizio+"-centro:"+centro+"-fine:"+fine+"-valore:"+w.isCorrect());
+				
 				
 				if(this.words.get(centro).compareTo(s)==0) //trovata corrispondenza
 				{
 					
 					w.setCorrectWrong(true);
 					
+					
 				}
 				else{
-					if(this.words.get(centro).compareTo(s)>0){// cerco a desta
+					if(s.compareTo(this.words.get(centro))>0){// cerco a sinistra
 						
-						inizio = centro+1;
+					inizio = centro+1;
 						
 					}
-					else{//cerco a sinistra
+					else{//cerco a destra
 						
-						fine = centro-1;
+					fine = centro-1;
 						
 					}
 				}
 				
+				System.out.println("inizio:"+inizio+"-centro:"+centro+"-fine:"+fine+"-valore:"+w.isCorrect());
+				
 			}
 			
-			
-			
+			//if(w.isCorrect()!=true)
+			//	w.setCorrectWrong(false);
+			*/
 			result.add(w);
 				
 			
