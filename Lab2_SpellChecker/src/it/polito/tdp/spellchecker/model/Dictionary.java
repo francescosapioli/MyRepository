@@ -22,10 +22,54 @@ public class Dictionary {
 		
 		for(String s : inputTextList){
 			RichWord w= new RichWord(s);
+			
+			/* ricerca effettuata scorrendo gli elemtenti del dizionario dal primo in avanti:
 			if(words.contains(s))
 				w.setCorrectWrong(true);
 			else
 				w.setCorrectWrong(false);
+			*/
+			
+			//ricerca dicotomica
+			
+			w.setCorrectWrong(false);
+			
+			int inizio;
+			int centro;
+			int fine;
+			int indice;
+			
+			indice = -1;
+			inizio = 0;
+			fine = this.words.size()-1;
+			
+			while(indice==-1 && inizio<=fine){
+				
+				centro = (inizio+fine)/2;
+				
+				if(this.words.get(centro).compareTo(s)==0) //trovata corrispondenza
+				{
+					indice = centro;
+					
+					w.setCorrectWrong(true);
+					
+				}
+				else{
+					if(this.words.get(centro).compareTo(s)>0){// cerco a desta
+						
+						inizio = centro+1;
+						
+					}
+					else{//cerco a sinistra
+						
+						fine = centro-1;
+						
+					}
+				}
+				
+			}
+			
+			
 			
 			result.add(w);
 				

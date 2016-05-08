@@ -72,6 +72,9 @@ public class SpellCheckerController {
     @FXML
     void doSpellCheck(ActionEvent event) {
     	
+    	long t0 = System.currentTimeMillis();
+    	
+    	
     	this.dictionary=this.cmbLanguage.getValue();
     	
     	
@@ -127,6 +130,8 @@ public class SpellCheckerController {
     			this.lblStatus.setText("Your text does not contain errors.");
     		else
     			this.lblStatus.setText("Your text contains errors");
+    		
+    		this.lblTime.setText("time:"+((double)System.currentTimeMillis()-(double)t0)/1000);
     		
     	}
     	
