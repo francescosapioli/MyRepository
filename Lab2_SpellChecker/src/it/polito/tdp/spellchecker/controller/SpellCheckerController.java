@@ -18,6 +18,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 public class SpellCheckerController {
 	
@@ -124,27 +125,32 @@ public class SpellCheckerController {
     		
     		List<RichWord> result = this.dictionary.spellCheckText(txtUncheckedList);
     		
-    		String txtChecked= "";
+    		Text txtChecked=new Text("");
     		
     		for(RichWord s : result){
+    			
+    			txtChecked =  new Text(s.getWord() + " ");
+    			
     			if(s.isCorrect()==false)
-    				txtChecked = txtChecked+" "+s.getWord().toUpperCase();//per ora che non so come impostare il testo
+    				//txtChecked = txtChecked+" "+s.getWord().toUpperCase();//per ora che non so come impostare il testo
     			                                                        //rosso, lo metto MAIUSCOLO
-    			else
-    				txtChecked = txtChecked+" "+s.getWord().toLowerCase();
+    				txtChecked.setFill(javafx.scene.paint.Color.RED);
+    		//	else
+    				//txtChecked = txtChecked+" "+s.getWord().toLowerCase();
+    			this.txtTextChecked.getChildrenUnmodifiable().add(txtChecked);
     			
     		}
     		
     		
     		
     		
-    		this.txtTextChecked.setText(txtChecked);
+    		//this.txtTextChecked.setText(txtChecked);
     		//il testo dovrebbe essere rosso ma  non ho idea di coma si faccia 
     		
-    		if(txtChecked.compareTo("")==0)
-    			this.lblStatus.setText("Your text does not contain errors.");
-    		else
-    			this.lblStatus.setText("Your text contains errors");
+    		//if(txtChecked.compareTo("")==0)
+    			//this.lblStatus.setText("Your text does not contain errors.");
+    		//else
+    			//this.lblStatus.setText("Your text contains errors");
     		
     		this.lblTime.setText("time:"+((double)System.currentTimeMillis()-(double)t0)/1000);
     		

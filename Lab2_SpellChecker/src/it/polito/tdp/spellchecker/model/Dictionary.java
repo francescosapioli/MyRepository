@@ -34,7 +34,7 @@ public class Dictionary {
 				w.setCorrectWrong(false);
 			}
 			
-			
+			result.add(w);
 			//ricerca dicotomica     21427
 			/*
 			w.setCorrectWrong(false);
@@ -46,10 +46,10 @@ public class Dictionary {
 			inizio = 0;
 			fine = this.words.size()-1;
 			
-			while(w.isCorrect()==false && inizio<=fine){
+			while(inizio!=fine){
 				
 				
-				centro = (inizio+fine)/2;
+				centro = inizio + (fine-inizio)/2;
 				
 				
 				System.out.println("inizio:"+inizio+"-centro:"+centro+"-fine:"+fine+"-valore:"+w.isCorrect());
@@ -59,6 +59,7 @@ public class Dictionary {
 				{
 					
 					w.setCorrectWrong(true);
+					break;
 					
 					
 				}
@@ -70,7 +71,7 @@ public class Dictionary {
 					}
 					else{//cerco a destra
 						
-					fine = centro-1;
+					fine = centro;
 						
 					}
 				}
@@ -81,16 +82,17 @@ public class Dictionary {
 			
 			//if(w.isCorrect()!=true)
 			//	w.setCorrectWrong(false);
-			*/
+			
 			result.add(w);
 				
 			
 		}
-		
+		*/
+		}
 		return result;
+	
+	
+	
+	
 	}
-	
-	
-	
-
 }
