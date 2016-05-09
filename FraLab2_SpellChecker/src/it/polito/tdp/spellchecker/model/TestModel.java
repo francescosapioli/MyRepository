@@ -18,6 +18,8 @@ import java.util.LinkedList;
  * Non è possibile utilizzare la ricerca dicotomica perchè con le 
  * HashSet non c'e' alcun ordinamento
  * 
+ * liste + estraggo dati da db + ricerca diccotomica:                            1.43625811145E9        
+ * 
  */
 
 

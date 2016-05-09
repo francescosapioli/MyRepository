@@ -11,7 +11,7 @@ public class ItalianDictionary extends Dictionary{
 	public void loadDictionary() {
 		
 super.loadDictionary();
-		
+		/*
 		try {
 			FileReader fr = new FileReader("rsc/Italian.txt");
 			BufferedReader br = new BufferedReader(fr);
@@ -24,11 +24,12 @@ super.loadDictionary();
 			}
 			br.close();
 			
-			//Collections.sort(this.dictionaryWords);
+		     Collections.sort(this.dictionaryWords);
 			
 			} catch (IOException e){
 			System.out.println("Errore nella lettura del file");
 			}
+			*/
 		
 		
 	}

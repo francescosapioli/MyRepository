@@ -4,12 +4,14 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
+import it.polito.tdp.spellchecker.db.DictionaryDB;
+
 public class Dictionary {
 	
-	final static boolean dicotomic = false;
+	final static boolean dicotomic = true;
 	
 	//protected List<String> dictionaryWords;
-	protected HashSet<String> dictionaryWords;
+	protected List<String> dictionaryWords;
 	
 	
 	public List<RichWord> spellCheckText(List<String> inputTextList){
@@ -35,7 +37,7 @@ public class Dictionary {
 		}
 		
 		else{
-			/*
+			
 			//inizio ricerca dicotomica
 			
 			//System.out.println(this.dictionaryWords.size());
@@ -67,7 +69,7 @@ public class Dictionary {
 			
 			result.add(w);
 			}
-			*/
+			
 			//fine ricerca dicotomica
 		}
 		
@@ -80,7 +82,9 @@ public class Dictionary {
 	
 	public void loadDictionary(){
 		
-		this.dictionaryWords = new HashSet<String> ();
+		
+		DictionaryDB d = new DictionaryDB();
+		this.dictionaryWords = d.loadDictionaryFromDB();
 		
 	}
 
