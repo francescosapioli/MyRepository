@@ -11,12 +11,12 @@ import it.polito.tdp.lab3.model.Studente;
 
 public class StudenteDAO {
 	
-	private Studente s = new Studente();
+	//private Studente s = new Studente();
 	
 	private String jdbcURL ="jdbc:mysql://localhost:8889/iscritticorsi?user=root&password=root";
 	
 	public Studente setStudente(Integer matricola){
-		
+		Studente s = new Studente();
 		
 		
 try {

@@ -1,5 +1,6 @@
 package it.polito.tdp.lab3.model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import it.polito.tdp.db.CorsoDAO;
@@ -57,8 +58,24 @@ public class Corso {
 	public void setPd(Integer pd) {
 		this.pd = pd;
 	}
+
+	@Override
+	public String toString() {
+				return this.nome;
+	}
 	
-	
+	public List<String> tuttiCorsi(){
+		LinkedList<String> result = new LinkedList<String>();
+		LinkedList<Corso> corsi = new LinkedList<Corso>();
+		
+		corsi =  (LinkedList<Corso>) this.c.tuttiCorsi();
+		//System.out.println(corsi);
+		for(Corso d : corsi){
+			result.add(d.getNome());
+		}
+		
+		return result;
+	}
 	
 	
 

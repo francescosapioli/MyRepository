@@ -3,6 +3,7 @@ package it.polito.tdp.lab3.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import it.polito.tdp.lab3.model.Corso;
 import it.polito.tdp.lab3.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -67,7 +68,7 @@ public class SegreteriaStudentiController {
 
     @FXML
     void initialize() {
-        assert cmbCorso != null : "fx:id=\"cmbCorso\" was not injected: check your FXML file 'SegreteriaStudenti.fxml'.";
+        //assert cmbCorso != null : "fx:id=\"cmbCorso\" was not injected: check your FXML file 'SegreteriaStudenti.fxml'.";
         assert btnCompleta != null : "fx:id=\"btnCompleta\" was not injected: check your FXML file 'SegreteriaStudenti.fxml'.";
         assert txtMatricola != null : "fx:id=\"txtMatricola\" was not injected: check your FXML file 'SegreteriaStudenti.fxml'.";
         assert txtNome != null : "fx:id=\"txtNome\" was not injected: check your FXML file 'SegreteriaStudenti.fxml'.";
@@ -77,6 +78,10 @@ public class SegreteriaStudentiController {
         assert btnReset != null : "fx:id=\"btnReset\" was not injected: check your FXML file 'SegreteriaStudenti.fxml'.";
 
         //inizializzare il comboBox, adesso il tipo e' string
+        this.cmbCorso.getItems().add("");
+        this.cmbCorso.getItems().addAll(this.model.getCorso().tuttiCorsi());
+        
+        
         
     }
 

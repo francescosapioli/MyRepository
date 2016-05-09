@@ -10,7 +10,7 @@ import it.polito.tdp.lab3.model.Corso;
 import it.polito.tdp.lab3.model.Studente;
 
 public class CorsoDAO {
-	private Corso c = new Corso();
+	//private Corso c = new Corso();
 	
 	private String jdbcURL ="jdbc:mysql://localhost:8889/iscritticorsi?user=root&password=root";
 
@@ -83,6 +83,51 @@ try {
 		} 
 		
 		
+	}
+	
+	public List<Corso> tuttiCorsi(){
+		LinkedList<Corso> co =new LinkedList<Corso>();
+		
+try {
+			
+			java.sql.Connection conn = DriverManager.getConnection(jdbcURL);
+			System.out.println(conn);
+			
+			java.sql.Statement st = conn.createStatement();
+			
+			String sql = "select codins, crediti, nome, pd from corso";
+			
+			ResultSet rs = st.executeQuery(sql);
+			
+			while(rs.next()){
+				
+				Corso c = new Corso();
+				c.setNome(rs.getString("nome"));
+				c.setCodins(rs.getString("codins"));
+				c.setCrediti(rs.getInt("crediti"));
+				c.setPd(rs.getInt("pd"));
+				co.add(c);
+				
+				
+			}
+			rs.close();
+			conn.close();
+		
+		
+		return co;
+		
+		
+		
+		
+		
+		
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} 
+	
+	return null;
 	}
 	
 	
