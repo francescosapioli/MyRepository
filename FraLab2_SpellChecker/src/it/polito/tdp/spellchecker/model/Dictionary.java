@@ -8,11 +8,12 @@ import it.polito.tdp.spellchecker.db.DictionaryDB;
 
 public class Dictionary {
 	
-	final static boolean dicotomic = true;
+	final static boolean dicotomic = false;
 	
 	//protected List<String> dictionaryWords;
 	protected List<String> dictionaryWords;
 	
+	private DictionaryDB d = new DictionaryDB();
 	
 	public List<RichWord> spellCheckText(List<String> inputTextList){
 		
@@ -21,14 +22,17 @@ public class Dictionary {
 		
 		if(dicotomic==false){
 			// inizio ricerca classica 
+			
 		for(String s : inputTextList){
 			
 			RichWord w = new RichWord(s);
 			
-			if(this.dictionaryWords.contains(s))
-				w.setCorrect(true);
-			else
-				w.setCorrect(false);
+		//	if(this.dictionaryWords.contains(s))
+			//	w.setCorrect(true);
+			//else
+				//w.setCorrect(false);
+			w.setCorrect(d.spellCheckFromDB(s));
+			
 			
 			result.add(w);
 				
@@ -83,7 +87,7 @@ public class Dictionary {
 	public void loadDictionary(){
 		
 		
-		DictionaryDB d = new DictionaryDB();
+		
 		this.dictionaryWords = d.loadDictionaryFromDB();
 		
 	}

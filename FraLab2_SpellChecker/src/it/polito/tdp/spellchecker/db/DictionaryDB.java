@@ -51,6 +51,38 @@ public class DictionaryDB{
 		
 	}
 	
+	public boolean spellCheckFromDB(String s){
+		
+        try {
+			
+			java.sql.Connection conn = DriverManager.getConnection(jdbcURL);
+			
+			java.sql.Statement st = conn.createStatement();
+			
+			String sql = "select nome from parola where nome=\""+s+"\"";
+			
+			ResultSet rs = st.executeQuery(sql);
+			
+			if(rs.next()==false)
+				return false;
+			
+			
+			rs.close();
+			conn.close();
+			
+		
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		return true;
+	}
+	
 	
 
 }
