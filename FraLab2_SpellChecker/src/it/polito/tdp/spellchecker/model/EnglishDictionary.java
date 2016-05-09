@@ -24,7 +24,7 @@ super.loadDictionary();
 			}
 			br.close();
 			
-			Collections.sort(this.dictionaryWords);
+			//Collections.sort(this.dictionaryWords);
 			
 			} catch (IOException e){
 			System.out.println("Errore nella lettura del file");

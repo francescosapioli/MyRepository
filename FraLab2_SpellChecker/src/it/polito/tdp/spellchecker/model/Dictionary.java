@@ -1,13 +1,15 @@
 package it.polito.tdp.spellchecker.model;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Dictionary {
 	
-	final static boolean dicotomic = true;
+	final static boolean dicotomic = false;
 	
-	protected List<String> dictionaryWords;
+	//protected List<String> dictionaryWords;
+	protected HashSet<String> dictionaryWords;
 	
 	
 	public List<RichWord> spellCheckText(List<String> inputTextList){
@@ -33,6 +35,7 @@ public class Dictionary {
 		}
 		
 		else{
+			/*
 			//inizio ricerca dicotomica
 			
 			//System.out.println(this.dictionaryWords.size());
@@ -56,7 +59,7 @@ public class Dictionary {
 						else{
 							if(s.compareTo(this.dictionaryWords.get(medio))>0)
 								inizio = medio+1;
-							else
+						else
 								fine = medio;
 						}
 					
@@ -64,7 +67,7 @@ public class Dictionary {
 			
 			result.add(w);
 			}
-			
+			*/
 			//fine ricerca dicotomica
 		}
 		
@@ -77,7 +80,7 @@ public class Dictionary {
 	
 	public void loadDictionary(){
 		
-		this.dictionaryWords = new LinkedList<String> ();
+		this.dictionaryWords = new HashSet<String> ();
 		
 	}
 

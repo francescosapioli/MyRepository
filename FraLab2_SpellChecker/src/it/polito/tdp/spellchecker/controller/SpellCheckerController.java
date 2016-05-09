@@ -1,6 +1,7 @@
 package it.polito.tdp.spellchecker.controller;
 
 import java.net.URL;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -23,6 +24,11 @@ import javafx.scene.text.TextFlow;
 public class SpellCheckerController {
 	
 	private Dictionary dic;
+	
+	//variabili per il controllo delle prestazioni
+	double media = 0;
+	long sum =0;
+	long num = 0;
 	
 	
 
@@ -87,7 +93,7 @@ public class SpellCheckerController {
         		
     			dic.loadDictionary();
         		
-    			LinkedList<String> listUnchecked = new LinkedList<String>();
+    			List<String> listUnchecked = new LinkedList<String>();
     			String txtUnchecked = this.txtTextUnchecked.getText().toLowerCase();
     			StringTokenizer st = new StringTokenizer(txtUnchecked, " ");
     			while(st.hasMoreTokens()){
@@ -107,19 +113,27 @@ public class SpellCheckerController {
     					flag=true;
 ;    				}
     				this.txtTextChecked.getChildren().add(richText);
-    				this.lblTime.setText("Time:"+(double)(System.nanoTime()-t0)/1000000000);
     				
-    				listUnchecked.clear();
-    				txtUnchecked = "";
-    				
-    				if(flag)
-    					this.lblStatus.setText("The text contains errors.");
-    				else
-    					this.lblStatus.setText("The text is correct.");
     				
     				
     			}
     			
+				this.lblTime.setText("Time:"+(double)(System.nanoTime()-t0)/1000000000);
+				
+				//inizio controllo prestazioni 
+				sum+=System.nanoTime()-t0;
+				num++;
+				media=(double)sum/(double)num;
+				System.out.println("media:"+media+"---num:"+num);
+				//fine controllo prestazioni
+				
+				listUnchecked.clear();
+				txtUnchecked = "";
+				
+				if(flag)
+					this.lblStatus.setText("The text contains errors.");
+				else
+					this.lblStatus.setText("The text is correct.");
     			
     			
     		}

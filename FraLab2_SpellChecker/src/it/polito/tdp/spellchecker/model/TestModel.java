@@ -1,6 +1,27 @@
 package it.polito.tdp.spellchecker.model;
 
 import java.util.LinkedList;
+
+/*Le prestazioni sono misurate in base alla media aritmetica di un campione di 20 elementi.
+ * 
+ *
+ *
+ *Modello e controller implementati con le LinkedList(ricerca classica):         1.689477635E7
+ * 
+ * Modello e controller implementati con le LInkedLIst(ricerca dicotomica):      2.401303805E7
+ * 
+ * Modello e controller implementati con le HashSet(ricerca classica):           1.42149589E7
+ * Non posso usare solo HashSet, devo usare anche delle liste altrimenti
+ * mi da l'output in ordine casuale, l'unica HAshSet è quella delle
+ * parole del dizionario     
+ * 
+ * Non è possibile utilizzare la ricerca dicotomica perchè con le 
+ * HashSet non c'e' alcun ordinamento
+ * 
+ */
+
+
+
 import java.util.List;
 
 public class TestModel {
@@ -31,32 +52,32 @@ public class TestModel {
 		l2.add("trust");
 		l2.add("meeeeee");
 		System.out.println("caccaaaaaaa");
-		List<RichWord> l1c = d1.spellCheckText(l1);
-		List<RichWord> l2c = d2.spellCheckText(l2);
+	//	List<RichWord> l1c = d1.spellCheckText(l1);
+	//	List<RichWord> l2c = d2.spellCheckText(l2);
 		System.out.println("ccccccccccccacca");
 		System.out.println("cacca");
 		System.out.println("parti");
-		 System.out.println(l1c.toString());
-	     System.out.println(l2c.toString());
+//		 System.out.println(l1c.toString());
+	//     System.out.println(l2c.toString());
 		
 		
 		String s1 = "";
 		String s2 = "";
 		
-		for(RichWord rw : l1c){
-			if(rw.isCorrect())
-				s1 +=" "+rw.getWord().toLowerCase();
-			else
-				s1 +=" "+rw.getWord().toUpperCase();
+	//	for(RichWord rw : l1c){
+		//	if(rw.isCorrect())
+			//	s1 +=" "+rw.getWord().toLowerCase();
+		//	else
+			//	s1 +=" "+rw.getWord().toUpperCase();
 			
-		}
-        for(RichWord rw : l2c){
-        	if(rw.isCorrect())
-				s2 = s2+" "+rw.getWord().toLowerCase();
-			else
-				s2 = s2+" "+rw.getWord().toUpperCase();
+	//	}
+      //  for(RichWord rw : l2c){
+        //	if(rw.isCorrect())
+			//	s2 = s2+" "+rw.getWord().toLowerCase();
+		//	else
+			//	s2 = s2+" "+rw.getWord().toUpperCase();
 			
-        }
+    //    }
         
         System.out.println("inizio");
        System.out.println(s1);
