@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.65" fx:controller="it.polito.tdp.spellchecker.controller.SpellCheckerController">
+   <top>
+      <Label text="Lab2_SpellChecker" BorderPane.alignment="CENTER" />
+   </top>
+   <center>
+      <VBox alignment="CENTER_RIGHT" spacing="15.0" BorderPane.alignment="CENTER_RIGHT">
+         <children>
+            <HBox spacing="20.0">
+               <children>
+                  <Label text="Choose the language:" />
+                  <ComboBox fx:id="cmbLanguage" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <TextArea fx:id="txtTextUnchecked" promptText="Insert the text, that you would to check." />
+            <Button fx:id="btnSpellCheck" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#doSpellCheck" text="Spell Check" />
+            <TextArea fx:id="txtTextChecked"  promptText="Here will be the text within the wrong words will be red." />
+            <HBox alignment="CENTER_RIGHT" spacing="20.0">
+               <children>
+                  <Label fx:id="lblStatus" alignment="TOP_RIGHT" text="No text inserted." />
+                  <Button fx:id="btnClearText" alignment="TOP_RIGHT" mnemonicParsing="false" onAction="#doClearText" text="Clear text" />
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </center>
+   <bottom>
+      <Label fx:id="lblTime" text="Here will be the time to complete the spell check." BorderPane.alignment="TOP_LEFT">
+         <padding>
+            <Insets bottom="20.0" left="20.0" />
+         </padding>
+      </Label>
+   </bottom>
+</BorderPane>
