@@ -9,5 +9,30 @@ public class Model {
 	private List<Corso> corsi = new LinkedList<Corso>();
 	
 	
+	public List<Studente> getStudenti() {
+		return studenti;
+	}
+	
+	
+	public void setStudenti(List<Studente> studenti) {
+		this.studenti = studenti;
+	}
+	
+	
+	public List<Corso> getCorsi() {
+		return corsi;
+	}
+	
+	
+	public void setCorsi(List<Corso> corsi) {
+		this.corsi = corsi;
+	}
+	
+	
+	
+	
+	
+	
+	
 
 }
