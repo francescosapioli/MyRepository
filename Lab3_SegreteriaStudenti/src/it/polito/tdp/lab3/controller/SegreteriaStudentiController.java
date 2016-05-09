@@ -2,6 +2,8 @@ package it.polito.tdp.lab3.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import it.polito.tdp.lab3.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,6 +11,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 public class SegreteriaStudentiController {
+	
+	private Model model = new Model();
+	
 
     @FXML
     private ResourceBundle resources;
@@ -74,5 +79,10 @@ public class SegreteriaStudentiController {
         //inizializzare il comboBox, adesso il tipo e' string
         
     }
+
+	public void setModel(Model model) {
+		this.model=model;
+		
+	}
 }
 
