@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import it.polito.tdp.lab3.model.Corso;
 import it.polito.tdp.lab3.model.Model;
+import it.polito.tdp.lab3.model.Studente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -62,6 +63,19 @@ public class SegreteriaStudentiController {
 
     @FXML
     void doCompleta(ActionEvent event) {
+    	if(this.txtMatricola == null || this.txtMatricola.getText().compareTo("")==0)
+    		this.txtResult.setText("Il campo matricola è vuoto.");
+    	else{
+    		Studente s = this.model.doCompleta(Integer.parseInt(this.txtMatricola.getText()));
+    		if(s == null)
+    			this.txtResult.setText("la matricola inserita non corrisponde a nessuno studente.");
+    		else{
+    			this.txtNome.setText(s.getNome());
+    			this.txtCognome.setText(s.getCognome());
+    		}
+    	}
+    	
+    	
 
     }
 
