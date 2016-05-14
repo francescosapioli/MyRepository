@@ -1,6 +1,8 @@
 package it.polito.tdp.lab3.controller;
 
 import java.net.URL;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.lab3.model.Corso;
@@ -53,11 +55,48 @@ public class SegreteriaStudentiController {
 
     @FXML
     void doCerca(ActionEvent event) {
+    	
+    	if(this.cmbCorso.getValue() != null && this.txtMatricola.getText().compareTo("")==0){ 
+    		List<Studente> stud = this.model.iscrittiCorso(this.cmbCorso.getValue());
+    		String txt = "";
+    		for(Studente s : stud){
+    			txt += s.toString() + "\n";
+    		}
+    		this.txtResult.setText(txt);
+    	}
+    	if(this.cmbCorso.getValue() == null && this.txtMatricola.getText().compareTo("")!=0){
+    		List<Corso> corsi = model.iscrittoCorsi(Integer.parseInt(this.txtMatricola.getText()));
+    		if(corsi.size()<1)
+    			this.txtResult.setText("La matricola non corrisponde a nessuno degli studenti presenti nel database.");
+    		else{
+    			String txt = "";
+    			for(Corso c : corsi){
+    				txt += c.getNome() + "\n";
+    			}
+    			this.txtResult.setText(txt);
+    		}
+    		
+    	}
+    	if(this.cmbCorso.getValue() != null && this.txtMatricola.getText().compareTo("")!=0){
+    		
+    		if(model.isIscritto(Integer.parseInt(this.txtMatricola.getText()), this.cmbCorso.getValue().getCodins()))
+    		     this.txtResult.setText("Lo studente e' iscritto al corso selezionato.");
+    	    else
+    	    	this.txtResult.setText("Lo studente non e' iscritto al corso selezionato.");
+    	}
+    	if(this.cmbCorso.getValue() == null && this.txtMatricola.getText().compareTo("")==0)
+    	this.txtResult.setText("ERRORE");
 
     }
 
     @FXML
     void doClear(ActionEvent event) {
+    	
+    	this.cmbCorso.setValue(null);
+    	this.txtCognome.setText("");
+    	this.txtMatricola.setText("");
+    	this.txtNome.setText("");
+    	this.txtResult.setText("");
 
     }
 
@@ -81,6 +120,10 @@ public class SegreteriaStudentiController {
 
     @FXML
     void doIscrivi(ActionEvent event) {
+    	if(model.doIscrivi(Integer.parseInt(this.txtMatricola.getText()), this.cmbCorso.getValue().getCodins()))
+    		this.txtResult.setText("Lo studente e' stato iscirtto con successo.");
+    	else
+    		this.txtResult.setText("Non e' stato possibile iscrivere lo studente al corso.");
 
     }
 
@@ -98,11 +141,18 @@ public class SegreteriaStudentiController {
         
         
         this.txtResult.setEditable(false);
+        
+        
+        
 
     }
 
 	public void setModel(Model model) {
 		this.model = model;
+		
+		Corso corsoFinto = new Corso("");
+        this.cmbCorso.getItems().add(corsoFinto);
+        this.cmbCorso.getItems().addAll(this.model.tuttiICorsi());
 		
 	}
 }

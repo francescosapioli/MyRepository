@@ -41,7 +41,7 @@ public class Corso {
 	}
 	@Override
 	public String toString() {
-		return this.codins + " " + this.nome + " " + this.crediti + " " + this.pd + " ";
+		return  this.nome ;
 	}
 	public Corso(String nome, Integer pd, Integer crediti, String codins, List<Studente> studenti) {
 		this.nome = nome;
