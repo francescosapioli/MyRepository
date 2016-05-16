@@ -135,6 +135,7 @@ public class SpellCheckerController {
     				//txtChecked = txtChecked+" "+s.getWord().toUpperCase();//per ora che non so come impostare il testo
     			                                                        //rosso, lo metto MAIUSCOLO
     				txtChecked.setFill(javafx.scene.paint.Color.RED);
+    			System.out.println(txtChecked);
     		//	else
     				//txtChecked = txtChecked+" "+s.getWord().toLowerCase();
     			this.txtTextChecked.getChildrenUnmodifiable().add(txtChecked);

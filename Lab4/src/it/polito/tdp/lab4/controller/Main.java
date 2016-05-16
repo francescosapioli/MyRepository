@@ -1,6 +1,7 @@
 package it.polito.tdp.lab4.controller;
 	
 import it.polito.tdp.lab4.model.Model;
+import it.polito.tdp.lab4.model.Model1;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -12,14 +13,14 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		
-		Model model = new Model();
+		Model1 model = new Model1();
 		
 		try {
 			
 			FXMLLoader loader =new FXMLLoader(getClass().getResource("Lab4.fxml"));
 			
 			BorderPane root = (BorderPane)loader.load();
-			Scene scene = new Scene(root,400,400);
+			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();

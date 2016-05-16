@@ -111,6 +111,7 @@ public class SpellCheckerController {
     					richText = new Text(r.getWord()+" ");
     					richText.setFill(Color.RED);
     					flag=true;
+    					System.out.println(richText);
 ;    				}
     				this.txtTextChecked.getChildren().add(richText);
     				
